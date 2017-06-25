@@ -27,3 +27,26 @@ std::tuple<int, int, int> FindMaxList(const std::vector<int> &vi)
 	}
 	return targetStore;
 }
+
+std::tuple<int, int, int> FindMaxList2(const std::vector<int> &vi)
+{
+	std::tuple<int, int, int> maxList{};
+	int thisSum = 0;
+	int thisSumBeginPos = 0;
+	for (int i = 0; i < vi.size(); ++i)
+	{
+		thisSum += vi[i];
+		if (thisSum > std::get<2>(maxList))
+		{
+			std::get<0>(maxList) = thisSumBeginPos;
+			std::get<1>(maxList) = i;
+			std::get<2>(maxList) = thisSum;
+		}
+		else if (thisSum < 0)
+		{
+			thisSumBeginPos = i + 1;
+			thisSum = 0;
+		}
+	}
+	return maxList;
+}

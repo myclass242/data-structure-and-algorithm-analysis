@@ -1,7 +1,5 @@
-﻿  cubesum.cpp
-e:\git\dsaa\chapter2\2.4.1\2.4.1\2.4.1\cubesum.cpp(40): warning C4018: “<”: 有符号/无符号不匹配
-e:\git\dsaa\chapter2\2.4.1\2.4.1\2.4.1\cubesum.cpp(42): warning C4018: “<”: 有符号/无符号不匹配
-e:\git\dsaa\chapter2\2.4.1\2.4.1\2.4.1\cubesum.cpp(61): warning C4018: “<”: 有符号/无符号不匹配
-e:\git\dsaa\chapter2\2.4.1\2.4.1\2.4.1\cubesum.cpp(64): warning C4018: “<”: 有符号/无符号不匹配
+﻿  pow.cpp
+  main.cpp
+  正在生成代码...
   2.4.1.vcxproj -> E:\GIT\dsaa\chapter2\2.4.1\2.4.1\Debug\2.4.1.exe
   2.4.1.vcxproj -> E:\GIT\dsaa\chapter2\2.4.1\2.4.1\Debug\2.4.1.pdb (Partial PDB)

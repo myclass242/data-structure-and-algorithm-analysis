@@ -139,13 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="binarysearch.h" />
     <ClInclude Include="cubesum.h" />
     <ClInclude Include="findmaxlist.h" />
+    <ClInclude Include="gcd.h" />
+    <ClInclude Include="pow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="binarysearch.cpp" />
     <ClCompile Include="cubesum.cpp" />
     <ClCompile Include="findmaxlist.cpp" />
+    <ClCompile Include="gcd.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

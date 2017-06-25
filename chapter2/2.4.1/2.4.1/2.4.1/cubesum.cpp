@@ -72,3 +72,69 @@ int MaxSubSum2(const std::vector<int>& a)
 	}
 	return maxSum;
 }
+
+static int do_maxSumRec(const std::vector<int> &a, int begin, int end)
+{
+	if ((begin == end) || (begin == end -1))
+	{
+		if (a[begin] > 0)
+		{
+			return a[begin];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	int center = (begin + end) / 2;
+	int leftMaxSum = do_maxSumRec(a, begin, center);
+	int rightMaxSum = do_maxSumRec(a, center, end);
+
+	int leftBorderMaxSum = 0;
+	int leftBorderSum = 0;
+	for (int i = center - 1; i >= 0; --i)
+	{
+		leftBorderSum += a[i];
+		if (leftBorderSum > leftBorderMaxSum)
+		{
+			leftBorderMaxSum = leftBorderSum;
+		}
+	}
+	int rightBorderMaxSum = 0;
+	int rightBorderSum = 0;
+	for (int i = center; i < end; ++i)
+	{
+		rightBorderSum += a[i];
+		if (rightBorderSum > rightBorderMaxSum)
+		{
+			rightBorderMaxSum = rightBorderSum;
+		}
+	}
+	int maxOfRightAndLeft = leftMaxSum > rightMaxSum ? leftMaxSum : rightMaxSum;
+	int BorderMaxSum = leftBorderMaxSum + rightBorderMaxSum;
+	return maxOfRightAndLeft > BorderMaxSum ? maxOfRightAndLeft : BorderMaxSum;
+}
+
+int MaxSubSum3(const std::vector<int> &a)
+{
+	return do_maxSumRec(a, 0, a.size());
+}
+
+int MaxSubSUm4(const std::vector<int> &a)
+{
+	int maxSum = 0;
+	int thisSum = 0;
+	for (int i = 0; i < a.size(); ++i)
+	{
+		thisSum += a[i];
+		if (thisSum > maxSum)
+		{
+			maxSum = thisSum;
+		}
+		else if (thisSum < 0)
+		{
+			thisSum = 0;
+		}
+	}
+	return maxSum;
+}

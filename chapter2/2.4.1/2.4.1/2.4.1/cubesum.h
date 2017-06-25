@@ -13,4 +13,8 @@ int MaxSubSum1(const std::vector<int> &a);
 
 int MaxSubSum2(const std::vector<int> &a);
 
+int MaxSubSum3(const std::vector<int> &a);
+
+int MasSubSUm4(const std::vector<int> &a);
+
 #endif

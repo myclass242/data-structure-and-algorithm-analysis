@@ -21,6 +21,15 @@
     <ClInclude Include="findmaxlist.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="binarysearch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gcd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cubesum.cpp">
@@ -30,6 +39,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="findmaxlist.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="binarysearch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gcd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

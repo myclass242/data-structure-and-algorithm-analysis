@@ -7,4 +7,6 @@
 * 求序列的最大子序列
 */
 std::tuple<int, int, int> FindMaxList(const std::vector<int> &);
+
+std::tuple<int, int, int> FindMaxList2(const std::vector<int> &);
 #endif
