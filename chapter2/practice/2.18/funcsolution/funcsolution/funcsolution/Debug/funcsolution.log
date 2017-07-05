@@ -1,0 +1,4 @@
+﻿  main.cpp
+e:\git\dsaa\chapter2\practice\2.18\funcsolution\funcsolution\funcsolution\main.cpp(7): warning C4305: “参数”: 从“__int64”到“double”截断
+  funcsolution.vcxproj -> E:\GIT\dsaa\chapter2\practice\2.18\funcsolution\funcsolution\Debug\funcsolution.exe
+  funcsolution.vcxproj -> E:\GIT\dsaa\chapter2\practice\2.18\funcsolution\funcsolution\Debug\funcsolution.pdb (Partial PDB)
