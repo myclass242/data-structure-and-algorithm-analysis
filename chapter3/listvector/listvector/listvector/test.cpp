@@ -3,11 +3,12 @@
 #include <string>
 #include "zyalg.h"
 #include "zyvector.h"
+#include "zylist.h"
 
 void TestVector(void)
 {
 	std::cout << "*****zyvector<int>****************" << std::endl;
-	//zy::zyvector<int> zvi{ 1, 2, 3, 4, 5 , 6, 7, 8, 9, 0 };
+	zy::zyvector<int> zvii{ 1, 2, 3, 4, 5 , 6, 7, 8, 9, 0 };
 	zy::zyvector<int> zvi;
 	//std::vector<int> vi{ 1,2,3,4,5,6,7,8,9,0 };
 	//show({ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 });
@@ -61,4 +62,12 @@ void TestVector(void)
 	std::cout << zvs[1] << std::endl;
 
 	std::cout << "*****zyvector<std::string>****************" << std::endl;
+}
+
+void TestList(void)
+{
+	std::cout << "************zy::list<int>**********************" << std::endl;
+	zy::list<int> li1;
+	zy::list<int> li2{ 1, 2, 3, 4, 5, 6, 7, 8, 9 , 0 };
+	std::cout << "************zy::list<int>**********************" << std::endl;
 }

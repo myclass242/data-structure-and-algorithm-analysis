@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="test.h" />
     <ClInclude Include="zyalg.h" />
+    <ClInclude Include="zylist.h" />
     <ClInclude Include="zyvector.h" />
   </ItemGroup>
   <ItemGroup>

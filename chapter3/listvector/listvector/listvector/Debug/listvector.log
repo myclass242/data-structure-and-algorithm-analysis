@@ -9,11 +9,11 @@ d:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.
               _InIt=const std::basic_string<char,std::char_traits<char>,std::allocator<char>> *
           ]
   e:\git\dsaa\chapter3\listvector\listvector\listvector\zyvector.h(46): note: 编译 类 模板 成员函数 "zy::zyvector<std::string>::zyvector(const std::initializer_list<std::basic_string<char,std::char_traits<char>,std::allocator<char>>> &)" 时
-  e:\git\dsaa\chapter3\listvector\listvector\listvector\test.cpp(51): note: 参见对正在编译的函数 模板 实例化“zy::zyvector<std::string>::zyvector(const std::initializer_list<std::basic_string<char,std::char_traits<char>,std::allocator<char>>> &)”的引用
-  e:\git\dsaa\chapter3\listvector\listvector\listvector\test.cpp(51): note: 参见对正在编译的 类 模板 实例化 "zy::zyvector<std::string>" 的引用
-  正在生成代码...
-  正在编译...
-  main.cpp
-  正在生成代码...
+  e:\git\dsaa\chapter3\listvector\listvector\listvector\test.cpp(52): note: 参见对正在编译的函数 模板 实例化“zy::zyvector<std::string>::zyvector(const std::initializer_list<std::basic_string<char,std::char_traits<char>,std::allocator<char>>> &)”的引用
+  e:\git\dsaa\chapter3\listvector\listvector\listvector\test.cpp(52): note: 参见对正在编译的 类 模板 实例化 "zy::zyvector<std::string>" 的引用
+e:\git\dsaa\chapter3\listvector\listvector\listvector\zylist.h(270): warning C4172: 返回局部变量或临时变量的地址
+e:\git\dsaa\chapter3\listvector\listvector\listvector\zylist.h(272): warning C4172: 返回局部变量或临时变量的地址
+e:\git\dsaa\chapter3\listvector\listvector\listvector\zylist.h(249): warning C4172: 返回局部变量或临时变量的地址
+e:\git\dsaa\chapter3\listvector\listvector\listvector\zylist.h(292): warning C4172: 返回局部变量或临时变量的地址
   listvector.vcxproj -> E:\GIT\dsaa\chapter3\listvector\listvector\Debug\listvector.exe
   listvector.vcxproj -> E:\GIT\dsaa\chapter3\listvector\listvector\Debug\listvector.pdb (Partial PDB)
