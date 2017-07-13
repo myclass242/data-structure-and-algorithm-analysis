@@ -68,6 +68,7 @@ void TestList(void)
 {
 	std::cout << "************zy::list<int>**********************" << std::endl;
 	zy::list<int> li1;
-	zy::list<int> li2{ 1, 2, 3, 4, 5, 6, 7, 8, 9 , 0 };
+	zy::list<int> li2{ 1, 2/*, 3, 4, 5, 6, 7, 8, 9 , 0*/ };
+	zy::Print(li2, std::cout);
 	std::cout << "************zy::list<int>**********************" << std::endl;
 }

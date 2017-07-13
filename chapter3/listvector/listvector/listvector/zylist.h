@@ -95,6 +95,7 @@ public:
 		friend bool operator!=(const const_iterator &lft, const const_iterator &rht)
 		{
 			return !(lft == rht);
+			//return lft.current != rht.current;
 		}
 
 		friend void swap(const_iterator &lft, const_iterator &rht)
@@ -195,6 +196,7 @@ public:
 		:list()
 	{
 		auto insertPos = begin();
+		--insertPos;		/* 在空list，begin和end迭代器都指向尾后元素，方便循环判断，跟stl一致.所以此时需要前进一个节点 */
 		for (const auto &sur : lt)
 		{
 			node *obj = new node(sur);
@@ -205,7 +207,10 @@ public:
 
 	~list()
 	{
-		destory(begin(), end());
+		/*auto realEnd = end();
+		--realEnd;
+		destory(begin(), realEnd);*/
+		destory(head->next, tail->prev);
 		delete head;
 		delete tail;
 	}
@@ -254,22 +259,24 @@ public:
 		return static_cast<const_iterator>(head->next);
 	}
 
+	const_iterator &cbegin() const
+	{
+		return begin();
+	}
+
 	const_iterator &end() const
 	{
-		if (!empty())
-		{
-			return static_cast<const_iterator>(tail->prev);
-		}
 		return static_cast<const_iterator>(tail);
 	}
 
 	iterator &end()
 	{
-		if (!empty())
-		{
-			return static_cast<iterator>(tail->prev);
-		}
 		return static_cast<iterator>(tail);
+	}
+
+	const_iterator &cend() const
+	{
+		return end();
 	}
 
 private:
@@ -323,6 +330,26 @@ private:
 			--theSize;
 		}
 		delete cur.current;
+		--theSize;
+	}
+
+	void destory(node *begin, node *end)
+	{
+		if (empty())
+		{
+			return;
+		}
+		begin->prev->next = end->next;
+		end->next->prev = begin->prev;
+		auto cur = begin;
+		while (cur != end)
+		{
+			auto nxt = cur->next;
+			delete cur;
+			cur = nxt;
+			--theSize;
+		}
+		delete cur;
 		--theSize;
 	}
 
