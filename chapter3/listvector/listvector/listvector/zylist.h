@@ -50,6 +50,15 @@ public:
 			:current(nullptr)
 		{}
 
+		const_iterator(const const_iterator &oth)
+			:current(oth.current)
+		{}
+
+		const_iterator &operator=(const const_iterator &oth)
+		{
+			current = oth.current;
+			return *this;
+		}
 
 		const ValueType &operator*() const
 		{
@@ -94,8 +103,8 @@ public:
 
 		friend bool operator!=(const const_iterator &lft, const const_iterator &rht)
 		{
-			return !(lft == rht);
-			//return lft.current != rht.current;
+			//return !(lft == rht);
+			return lft.current != rht.current;
 		}
 
 		friend void swap(const_iterator &lft, const_iterator &rht)
@@ -122,6 +131,26 @@ public:
 	public:
 		iterator()
 		{}
+
+		iterator(const iterator &oth)
+			:const_iterator(oth.current)
+		{}
+
+		iterator(const const_iterator &oth)
+			:const_iterator(oth.current)
+		{}
+
+		iterator &operator=(const iterator &oth)
+		{
+			current = oth.current;
+			return *this;
+		}
+
+		iterator &operator=(const const_iterator &oth)
+		{
+			current = oth.current;
+			return *this;
+		}
 
 		ValueType &operator*()
 		{
@@ -224,9 +253,9 @@ public:
 
 	iterator &insert(iterator &pos, ValueType item)
 	{
-		node obj = new node(std::move(item));
+		node *obj = new node(std::move(item));
 		++theSize;
-		return insertAfterIterator(pos, obj);
+		return insertAfterIterator(pos, *obj);
 		
 	}
 
@@ -365,166 +394,5 @@ private:
 	node *tail;
 	size_t theSize;
 };
-
-//template<typename Object>
-//class list<Object>::node
-//{
-//public:
-//	node(const ValueType &d = ValueType{}, node *pre = nullptr, node *nxt = nullptr)
-//		:data(d), next(nxt), prev(pre)
-//	{}
-//
-//	node(ValueType &&d, node *pre = nullptr, node *nxt = nullptr)
-//		:data(std::move(d)), next(nxt), prev(pre)
-//	{}
-//
-//	node(const node &oth)
-//		:data(oth.data), next(nullptr), prev(nullptr)
-//	{}
-//
-//	node(node &&oth)
-//		:data(std::move(oth.data)), next(oth.next), prev(oth.prev)
-//	{}
-//	//friend class list<Object>::iterator;
-//public:
-//	/*node *next;
-//	node *prev;*/
-//	iterator next;
-//	iterator prev;
-//	ValueType data;
-//};
-//
-//template<typename Object>
-//class list<Object>::const_iterator
-//{
-//	friend class list<Object>;
-//public:
-//	const_iterator()
-//		:current(nullptr)
-//	{}
-//
-//
-//	const ValueType &operator*() const
-//	{
-//		return retrieve();
-//	}
-//
-//	const ValueTypr *operator->() const
-//	{
-//		return &this->operator*();
-//	}
-//
-//	const_iterator &operator++()
-//	{
-//		current = current->next;
-//		return *this;
-//	}
-//
-//	const_iterator operator++(int)
-//	{
-//		auto ret = *this;
-//		++(*this);
-//		return ret;
-//	}
-//
-//	const_iterator &operator--()
-//	{
-//		current = current->prev;
-//		return *this;
-//	}
-//
-//	const_iterator operator--(int)
-//	{
-//		auto ret = *this;
-//		--(*this);
-//		return ret;
-//	}
-//
-//	friend bool operator==(const const_iterator &lft, const const_iterator &rht) 
-//	{
-//		return lft.current == rht.current;
-//	}
-//
-//	friend bool operator!=(const const_iterator &lft, const const_iterator &rht) 
-//	{
-//		return !(lft == rht);
-//	}
-//
-//	friend void swap(const_iterator &lft, const_iterator &rht)
-//	{
-//		using std::swap;
-//		swap(lft.current, rht.current);
-//	}
-//protected:
-//	const_iterator(node *p)
-//		:current(p)
-//	{}
-//
-//	ValueType &retrieve() const
-//	{
-//		return current->data;
-//	}
-//protected:
-//	node *current;
-//};
-
-//template <typename Object>
-//class list<Object>::iterator:public const_iterator
-//{
-//	friend class list<Object>;
-//public:
-//	iterator()
-//	{}
-//
-//	ValueType &operator*()
-//	{
-//		return const_iterator::retrieve();
-//	}
-//
-//	const ValueType &operator*() const
-//	{
-//		return const_iterator::retrieve();
-//	}
-//
-//	ValueType *operator->()
-//	{
-//		return &this->operator*();
-//	}
-//
-//	const ValueType *operator->() const
-//	{
-//		return &this->operator*();
-//	}
-//
-//	iterator &operator++()
-//	{
-//		current = current->next;
-//		return *this;
-//	}
-//
-//	iterator operator++(int)
-//	{
-//		auto ret = *this;
-//		++(*this);
-//		return ret;
-//	}
-//
-//	iterator &operator--()
-//	{
-//		current = current->prev;
-//		return *this;
-//	}
-//
-//	iterator operator--(int)
-//	{
-//		auto ret = *this;
-//		--(*this);
-//		return ret;
-//	}
-//protected:
-//	iterator(node *p)
-//		:current(p)
-//	{}
-//};
 }
 #endif
