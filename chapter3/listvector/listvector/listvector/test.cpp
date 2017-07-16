@@ -1,4 +1,4 @@
-#include "test.h"
+﻿#include "test.h"
 #include <iostream>
 #include <string>
 #include "zyalg.h"
@@ -69,10 +69,17 @@ void TestList(void)
 	std::cout << "************zy::list<int>**********************" << std::endl;
 	zy::list<int> li1;
 	zy::list<int> li2{ 1, 2, 3, 4, 5, 6, 7, 8, 9 , 0 };
+	auto li3 = li2;
+	zy::Print(li3, std::cout);
 	zy::Print(li2, std::cout);
 	auto begin = li2.begin();
 	li2.insert(begin, 0);
 	//li2.insert(li2.begin(), 0);
 	zy::Print(li2, std::cout);
+	li3 = li2;
+	zy::Print(li3, std::cout);
+	li3 = li3;
+	std::cout << "After 赋值" << std::endl;
+	zy::Print(li3, std::cout);
 	std::cout << "************zy::list<int>**********************" << std::endl;
 }

@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #ifndef ZYALG_H_
 #define ZYALG_H_
 #include <iostream>
 
-/* ¶ÔÊı¾İ½á¹¹µÄ²Ù×÷Ëã·¨ */
+/* å¯¹æ•°æ®ç»“æ„çš„æ“ä½œç®—æ³• */
 
 namespace zy{
 
@@ -19,7 +19,7 @@ namespace zy{
 //	return lst.cbegin();
 //}
 
-/* Ã¿¸ôÒ»ÏîÉ¾³ıÈİÆ÷ÖĞµÄÔªËØ */
+/* æ¯éš”ä¸€é¡¹åˆ é™¤å®¹å™¨ä¸­çš„å…ƒç´  */
 template <typename Container>
 void RemoveEveryOtherItem(Container &lst)
 {
@@ -34,7 +34,7 @@ void RemoveEveryOtherItem(Container &lst)
 	}
 }
 
-/* ´òÓ¡ÈİÆ÷ÖĞµÄÔªËØ */
+/* æ‰“å°å®¹å™¨ä¸­çš„å…ƒç´  */
 template <typename Container>
 void Print(const Container &lst, std::ostream &out)
 {
@@ -43,11 +43,11 @@ void Print(const Container &lst, std::ostream &out)
 		out << "empty" << std::endl;
 		return;
 	}
-	auto cbegin = lst.cbegin();
-	out << "[ " << *cbegin++;
-	while (cbegin != lst.cend())
+	auto begin = lst.begin();
+	out << "[ " << *begin++;
+	while (begin != lst.end())
 	{
-		out << ", " << *cbegin++;
+		out << ", " << *begin++;
 	}
 	out << " ]" << std::endl;
 }

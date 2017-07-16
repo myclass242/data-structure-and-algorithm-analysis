@@ -1,397 +1,452 @@
-#pragma once
+﻿#pragma once
 #ifndef ZYLIST_H_
 #define ZYLIST_H_
 #include <cstdbool>
 #include <initializer_list>
+#include <stdexcept>
 /* list链表
  * iterator const_iterator node list四个模板类
  */
 
 namespace zy {
-	template <typename Object>
-	class list
+template <typename Object>
+class list
+{
+	typedef typename Object ValueType;
+	typedef size_t SizeType;
+private:
+	class node
 	{
 	public:
-		typedef typename Object ValueType;
-	private: /* iterator 和 node 应该为list 类的嵌套类 */
-		class node
+		node(const ValueType &d = ValueType{}, node *pre = nullptr, node *nxt = nullptr)
+			:data(d), prev(pre), next(nxt)
+		{}
+
+		node(const node &oth)
+			:data(oth.data), prev(oth.prev), next(oth.next)
+		{}
+		node(node &&oth)
+			:data(std::move(oth.data)), prev(oth.prev), next(oth.next)
 		{
-		public:
-			node(const ValueType &d = ValueType{}, node *pre = nullptr, node *nxt = nullptr)
-				:data(d), next(nxt), prev(pre)
-			{}
-
-			node(ValueType &&d, node *pre = nullptr, node *nxt = nullptr)
-				:data(std::move(d)), next(nxt), prev(pre)
-			{}
-
-			node(const node &oth)
-				:data(oth.data), next(nullptr), prev(nullptr)
-			{}
-
-			node(node &&oth)
-				:data(std::move(oth.data)), next(oth.next), prev(oth.prev)
-			{}
-			//friend class list<Object>::iterator;
-		public:
-			node *next;
-			node *prev;
-			/*iterator next;
-			iterator prev;*/
-			ValueType data;
-		};
-	public:
-		class const_iterator
-		{
-			friend class list<Object>;
-		public:
-			const_iterator()
-				:current(nullptr)
-			{}
-
-			/*const_iterator(const const_iterator &oth)
-				:current(oth.current)
-			{}
-
-			const_iterator &operator=(const const_iterator &oth)
-			{
-				current = oth.current;
-				return *this;
-			}*/
-
-			const ValueType &operator*() const
-			{
-				return retrieve();
-			}
-
-			const node *operator->() const
-			{
-				return current;
-			}
-
-			const_iterator &operator++()
-			{
-				current = current->next;
-				return *this;
-			}
-
-			const_iterator operator++(int)
-			{
-				auto ret = *this;
-				++(*this);
-				return ret;
-			}
-
-			const_iterator &operator--()
-			{
-				current = current->prev;
-				return *this;
-			}
-
-			const_iterator operator--(int)
-			{
-				auto ret = *this;
-				--(*this);
-				return ret;
-			}
-
-			friend bool operator==(const const_iterator &lft, const const_iterator &rht)
-			{
-				return lft.current == rht.current;
-			}
-
-			friend bool operator!=(const const_iterator &lft, const const_iterator &rht)
-			{
-				//return !(lft == rht);
-				return lft.current != rht.current;
-			}
-
-			friend void swap(const_iterator &lft, const_iterator &rht)
-			{
-				using std::swap;
-				swap(lft.current, rht.current);
-			}
-		protected:
-			const_iterator(node *p)
-				:current(p)
-			{}
-
-			ValueType &retrieve() const
-			{
-				return current->data;
-			}
-		protected:
-			node *current;
-		};
-
-		class iterator : public const_iterator
-		{
-			friend class list<Object>;
-		public:
-			iterator()
-			{}
-
-			/*iterator(const iterator &oth)
-				:const_iterator(oth.current)
-			{}
-
-			iterator(const const_iterator &oth)
-				:const_iterator(oth.current)
-			{}
-
-			iterator &operator=(const iterator &oth)
-			{
-				current = oth.current;
-				return *this;
-			}
-
-			iterator &operator=(const const_iterator &oth)
-			{
-				current = oth.current;
-				return *this;
-			}*/
-
-			ValueType &operator*()
-			{
-				return const_iterator::retrieve();
-			}
-
-			const ValueType &operator*() const
-			{
-				return const_iterator::retrieve();
-			}
-
-			node *operator->()
-			{
-				return current;
-			}
-
-			const node *operator->() const
-			{
-				return current;
-			}
-
-			iterator &operator++()
-			{
-				current = current->next;
-				return *this;
-			}
-
-			iterator operator++(int)
-			{
-				auto ret = *this;
-				++(*this);
-				return ret;
-			}
-
-			iterator &operator--()
-			{
-				current = current->prev;
-				return *this;
-			}
-
-			iterator operator--(int)
-			{
-				auto ret = *this;
-				--(*this);
-				return ret;
-			}
-		protected:
-			iterator(node *p)
-				:const_iterator{ p }
-			{}
-		};
+			oth.prev = nullptr;
+			oth.next = nullptr;
+		}
+		node(ValueType &&d, node *pre = nullptr, node *nxt = nullptr)
+			:data(std::move(d)), prev(pre), next(nxt)
+		{}
 
 	public:
-		list()
+		node *prev;
+		node *next;
+		ValueType data;
+		//friend class list<ValueType>;
+	};
+public:
+	class const_iterator
+	{
+	public:
+		const_iterator()
+			:current(nullptr)
+		{}
+
+		const_iterator(const_iterator &oth)
+			:current(oth.current)
+		{}
+
+		const_iterator &operator=(const_iterator &oth)
 		{
-			init();
+			current = oth.current;
+			return *this;
 		}
 
-		list(const list &oth)
-			:list(), theSize(oth.theSize)
+		const ValueType &operator*() const
 		{
-			insertList(oth.head, oth.tail, head, tail);
+			return retrieve();
 		}
 
-		list(list &&oth)
-			:list()
+		const_iterator &operator++()
 		{
-			swap(*this, oth);
+			current = current->next;
+			return *this;
 		}
 
-		list(const std::initializer_list<ValueType> &lt)
-			:list()
+		const_iterator operator++(int)
 		{
-			auto insertPos = begin();
-			--insertPos;		/* 在空list，begin和end迭代器都指向尾后元素，方便循环判断，跟stl一致.所以此时需要前进一个节点 */
-			for (const auto &sur : lt)
-			{
-				node *obj = new node(sur);
-				insertPos = insertAfterIterator(insertPos, *obj);
-				++theSize;
-			}
-		}
-
-		~list()
-		{
-			/*auto realEnd = end();
-			--realEnd;
-			destory(begin(), realEnd);*/
-			destory(head->next, tail->prev);
-			delete head;
-			delete tail;
-		}
-
-		list &operator=(const list &oth)
-		{
-			destory(begin(), end());
-			insertList(oth.head, oth.tail, head, tail);
-			theSize = oth.theSize;
-		}
-
-		iterator &insert(iterator &pos, ValueType item)
-		{
-			node *obj = new node(std::move(item));
-			++theSize;
-			return insertAfterIterator(pos, *obj);
-
-		}
-
-		iterator &erase(iterator &pos)
-		{
-			auto ret = pos->prev;
-			destory(pos, pos);
+			const_iterator ret = *this;
+			current = current->next;
 			return ret;
 		}
 
-		iterator &erase(iterator &begin, iterator &end)
+		const_iterator &operator--()
 		{
-			auto ret = begin->prev;
-			destory(begin, end);
+			current = current->prev;
+			return *this;
+		}
+
+		const_iterator operator--(int)
+		{
+			const_iterator ret = *this;
+			current = current->prev;
 			return ret;
 		}
 
-		bool empty() const
+		bool operator==(const const_iterator &rht) const
 		{
-			return theSize == 0;
+			return current == rht.current;
 		}
 
-		iterator &begin()
+		bool operator!=(const const_iterator &rht) const
 		{
-			return static_cast<iterator>(head->next);
+			return !(*this == rht);
+		}
+	protected:
+		const_iterator(node *p)
+			:current(p)
+		{}
+
+		ValueType &retrieve() const
+		{
+			return current->data;
+		}
+	protected:
+		node *current;
+		friend class list<ValueType>;
+	};
+
+	class iterator :public const_iterator
+	{
+	public:
+		iterator()
+		{}
+
+		iterator(const iterator &oth)
+			:const_iterator(oth.current)
+		{}
+
+		iterator &operator=(const iterator &oth)
+		{
+			//current = oth.current;
+			const_iterator = oth.const_iterator;
 		}
 
-		const_iterator &begin() const
+		ValueType &operator*()
 		{
-			return static_cast<const_iterator>(head->next);
+			return const_iterator::retrieve();
 		}
 
-		const_iterator &cbegin() const
+		iterator &operator++()
 		{
-			return begin();
+			current = current->next;
+			return *this;
 		}
 
-		const_iterator &end() const
+		iterator operator++(int)
 		{
-			return static_cast<const_iterator>(tail);
+			auto ret = *this;
+			current = current->next;
+			return ret;
 		}
 
-		iterator &end()
+		iterator &operator--()
 		{
-			return static_cast<iterator>(tail);
+			current = current->prev;
+			return *this;
 		}
 
-		const_iterator &cend() const
+		iterator operator--(int)
 		{
-			return end();
+			auto ret = *this;
+			current = current->prev;
+			return ret;
 		}
+	protected:
+		iterator(node *p)
+			:const_iterator(p)
+		{}
+		friend class list<ValueType>;
+	};
+public:
+	list()
+	{
+		init();
+	}
 
-	private:
-		void init(void)
+	list(const list &oth)
+	{
+		init();
+		for (const auto &i : oth)
 		{
-			theSize = 0;
-			head = new node;
-			tail = new node;
-			head->next = tail;
-			tail->prev = head;
+			insertBefore(tail, i);
 		}
+	}
 
-		iterator &insertAfterIterator(iterator &cur, node &obj)
+	list(list &&oth)
+		:head(oth.head), tail(oth.tail), theSize(oth.theSize)
+	{
+		oth.head = nullptr;
+		oth.tail = nullptr;
+		oth.theSize = 0;
+	}
+
+	list(const std::initializer_list<ValueType> &li)
+	{
+		init();
+		for (const auto &i : li)
 		{
-			auto tmp = cur->next;
-			cur->next->prev = &obj;
-			cur->next = &obj;
-			obj.next = tmp;
-			obj.prev = cur.current;
-			return iterator(&obj);
+			insertBefore(tail, i);
 		}
+	}
 
-		void insertList(iterator &outBegin, iterator &outEnd, iterator &inBegin, iterator &inEnd)
+	~list()
+	{
+		clear();
+		delete head;
+		delete tail;
+	}
+
+	list &operator=(const list &oth)
+	{
+		clear();
+		for (const auto &i : oth)
 		{
-			iterator traversalOthList = outBegin->next;
-			iterator traversalThisList = inBegin;
-			while (traversalOthList != outEnd)
-			{
-				node *tmp = new node(*traversalOthList);
-				//insertAfterNode(traversalThisList, *tmp);
-				insertAfterIterator(traversalThisList, *tmp);
-				++traversalThisList;
-				++traversalOthList;
-			}
+			insertBefore(tail, i);
 		}
+		return *this;
+	}
 
-		void destory(iterator &begin, iterator &end)
+	list &operator=(list &&oth)
+	{
+		swap(*this, oth);
+	}
+
+	void clear()
+	{
+		while (!empty())
 		{
-			if (empty())
-			{
-				return;
-			}
-			begin->prev->next = end->next;
-			end->next->prev = begin->prev;
-			auto cur = begin;
-			while (cur != end)
-			{
-				auto nxt = cur->next;
-				delete cur.current;
-				cur = nxt;
-				--theSize;
-			}
-			delete cur.current;
-			--theSize;
+			deleteNode(tail->prev);
 		}
+	}
 
-		void destory(node *begin, node *end)
+	SizeType size() const
+	{
+		return theSize;
+	}
+
+	bool empty() const
+	{
+		return theSize == 0;
+	}
+
+	iterator begin()
+	{
+		return head->next;
+	}
+
+	const_iterator begin() const
+	{
+		return head->next;
+	}
+
+	iterator end()
+	{
+		return tail;
+	}
+
+	const_iterator end() const
+	{
+		return tail;
+	}
+
+	bool operator==(const list &oth) const
+	{
+		return (head == oth.head) && (tail == oth.tail);
+	}
+
+	bool operator!=(const list &oth) const
+	{
+		return !(this->operator==(oth));
+	}
+
+	ValueType &front()
+	{
+		if (!empty())
 		{
-			if (empty())
-			{
-				return;
-			}
-			begin->prev->next = end->next;
-			end->next->prev = begin->prev;
-			auto cur = begin;
-			while (cur != end)
-			{
-				auto nxt = cur->next;
-				delete cur;
-				cur = nxt;
-				--theSize;
-			}
-			delete cur;
-			--theSize;
+			return *begin();
 		}
-
-		friend void swap(list &lft, list &rht)
+		else
 		{
-			using std::swap;
-			swap(lft.head, rht.head);
+			throw std::range_error("List is EMPTY");
+		}
+	}
+
+	const ValueType &front() const
+	{
+		if (!empty())
+		{
+			return *begin();
+		}
+		else
+		{
+			throw std::range_error("List is EMPTY");
+		}
+	}
+
+	ValueType &back()
+	{
+		if (!empty())
+		{
+			return *(--end());
+		}
+		else
+		{
+			throw std::range_error("List is EMPTY");
+		}
+	}
+
+	ValueType &back() const
+	{
+		if (!empty())
+		{
+			return *(--end());
+		}
+		else
+		{
+			throw std::range_error("List is EMPTY");
+		}
+	}
+
+	iterator insert(iterator itr, const ValueType &obj)
+	{
+		return insertAfter(itr.current, obj);
+	}
+
+	iterator insert(iterator itr, ValueType &&obj)
+	{
+		return insertAfter(itr.current, obj);
+	}
+
+	void push_front(const ValueType &obj)
+	{
+		insertAfter(head, obj);
+	}
+
+	void push_front(ValueType &&obj)
+	{
+		insertAfter(head, obj);
+	}
+
+	void push_back(const ValueType &obj)
+	{
+		insertBefore(tail, obj);
+	}
+
+	void push_back(ValueType &&obj)
+	{
+		insertBefore(tail, obj);
+	}
+
+	iterator erase(iterator itr)
+	{
+		return deleteNode(itr.current);
+	}
+
+	/* 删除[from, to)区间 */
+	iterator erase(iterator from, iterator to)
+	{
+		while (from != to)
+		{
+			from = erase(from);
+		}
+		return to;
+	}
+
+	void pop_front()
+	{
+		if (!empty())
+		{
+			erase(begin());
+		}
+		else
+		{
+			throw std::range_error("List is EMPTY");
+		}
+	}
+
+	void pop_back()
+	{
+		if (!empty())
+		{
+			erase(--end());
+		}
+		else
+		{
+			throw std::range_error("List is empty");
+		}
+	}
+
+private:
+	void init(void)
+	{
+		head = new node;
+		tail = new node;
+		head->next = tail;
+		tail->prev = head;
+		theSize = 0;
+	}
+
+	node *insertAfter(node *cur, const ValueType &item)
+	{
+		node *elem = new node(item, cur, cur->next);
+		cur->next->prev = elem;
+		cur->next = elem;
+		++theSize;
+		return elem;
+	}
+
+	node *insertAfter(node *cur, ValueType &&item)
+	{
+		node *elem = new node(std::move(item), cur, cur->next);
+		cur->next->prev = elem;
+		cur->next = elem;
+		++theSize;
+		return elem;
+	}
+
+	node *insertBefore(node *cur, const ValueType &item)
+	{
+		return insertAfter(cur->prev, item);
+	}
+
+	node *insertBefore(node *cur, ValueType &&item)
+	{
+		return insertAfter(cur->prev, item);
+	}
+
+	node *deleteNode(node *cur)
+	{
+		auto ret = cur->next;
+		cur->prev->next = cur->next;
+		cur->next->prev = cur->prev;
+		delete cur;
+		--theSize;
+		return ret;
+	}
+
+	friend void swap(list &lft, list &rht)
+	{
+		using std::swap;
+		if (lft != rht)
+		{
+			swap(lft.head, lft.head);
 			swap(lft.tail, rht.tail);
-			swap(lft.theSize, rht.theSize);
+			swap(lft.theSize, lft.theSize);
 		}
-	private:
+	}
+private:
 		node *head;
 		node *tail;
-		size_t theSize;
-	};
+		SizeType theSize;
+};
+	
 }
 #endif
