@@ -240,7 +240,8 @@ private:
 	{
 		for (SizeType i = 0; i != nums; ++i)
 		{
-			dest[i] = std::move(input[i]);
+			//dest[i] = std::move(input[i]);
+			alloc.construct(dest + i, std::move(input[i]));
 		}
 	}
 

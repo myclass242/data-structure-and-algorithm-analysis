@@ -4,6 +4,8 @@
 #include "zyalg.h"
 #include "zyvector.h"
 #include "zylist.h"
+#include "zyforwardlist.h"
+#include "zystack.h"
 
 void TestVector(void)
 {
@@ -82,4 +84,27 @@ void TestList(void)
 	std::cout << "After 赋值" << std::endl;
 	zy::Print(li3, std::cout);
 	std::cout << "************zy::list<int>**********************" << std::endl;
+}
+
+void TestForwardList(void)
+{
+	std::cout << "***********************zy::forward<int>***********************" << std::endl;
+	zy::ForwardList<int> fli1;
+	zy::ForwardList<int> fli2{ 1, 2, 3, 4, 5 , 6, 7, 8, 9, 0 };
+	auto fli3 = fli2;
+	zy::Print(fli3, std::cout);
+	fli2.pushFront(-1);
+	zy::Print(fli2, std::cout);
+	fli3.popFront();
+	zy::Print(fli3, std::cout);
+	std::cout << "***********************zy::forward<int>***********************" << std::endl;
+}
+
+void TestStack(void)
+{
+	std::cout << "********************************zy::stack<int>*****************************" << std::endl;
+	zy::stack<int> st1;
+	zy::stack<int> st2{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	std::cout << st2.top() << std::endl;
+	std::cout << "********************************zy::stack<int>*****************************" << std::endl;
 }

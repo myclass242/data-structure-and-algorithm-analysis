@@ -5,4 +5,8 @@
 void TestVector(void);
 
 void TestList(void);
+
+void TestForwardList(void);
+
+void TestStack(void);
 #endif

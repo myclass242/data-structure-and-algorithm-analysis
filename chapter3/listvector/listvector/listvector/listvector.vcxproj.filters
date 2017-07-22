@@ -27,6 +27,12 @@
     <ClInclude Include="zylist.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="zyforwardlist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zystack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
