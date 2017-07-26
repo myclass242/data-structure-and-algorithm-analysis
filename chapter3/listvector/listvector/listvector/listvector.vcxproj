@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="test.h" />
+    <ClInclude Include="usestack.h" />
     <ClInclude Include="zyalg.h" />
     <ClInclude Include="zyforwardlist.h" />
     <ClInclude Include="zylist.h" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="usestack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
