@@ -71,12 +71,14 @@ public:
 
 	ValueType &operator[](SizeType pos)
 	{
-		return *(data + pos);
+		//return *(data + pos);
+		return data[pos];
 	}
 
 	const ValueType &operator[](SizeType pos) const
 	{
-		return *(data + pos);
+		//return *(data + pos);
+		return data[pos];
 	}
 
 	SizeType size() const
@@ -129,9 +131,9 @@ public:
 	{
 		if (newSize > theCapacity)
 		{
-			increase_n(INCREASE_TIMES * newSize);
-			std::uninitialized_fill_n(begin() + theSize, newSize - theSize, ValueType{});
 			theCapacity = INCREASE_TIMES * newSize;
+			increase_n(theCapacity);
+			std::uninitialized_fill_n(begin() + theSize, newSize - theSize, ValueType{});
 		}
 		else
 		{
@@ -226,7 +228,7 @@ private:
 		return alloc.allocate(n);
 	}
 
-	void destory_n(ValueType *pos,SizeType n)
+	void destory_n(ValueType *pos, SizeType n)
 	{
 		for (SizeType i = 0; i != n; ++i)
 		{
@@ -246,7 +248,7 @@ private:
 	}
 
 	void deallocat_n(ValueType *pos,SizeType n)
-	{
+	{ 
 		alloc.deallocate(pos, n);
 	}
 

@@ -18,25 +18,12 @@ int main(void)
 	TestList();*/
 
 	//TestForwardList();
-	TestStack();
+	//TestStack();
 
-	std::list<int> li{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	//TestBalanceSigned();
+	
+	TestPostfixNotation();
 
-	std::forward_list<int> fli{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-
-	std::ifstream inFile;	
-	inFile.open("zylist.h", std::ifstream::in);
-	if (!inFile.is_open())
-	{
-		std::cout << "Open File fail" << std::endl;
-	}
-	else
-	{
-		BalanceSigned(inFile);
-		inFile.close();
-	}
-	/*std::stack<int> sti;
-	sti.top();*/
 	system("pause");
 	return 0;
 }

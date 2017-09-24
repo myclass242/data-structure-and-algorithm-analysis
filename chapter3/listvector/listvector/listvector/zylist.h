@@ -23,7 +23,7 @@ private:
 		{}
 
 		node(const node &oth)
-			:data(oth.data), prev(oth.prev), next(oth.next)
+			:data(oth.data), prev(nullptr), next(nullptr)
 		{}
 		node(node &&oth)
 			:data(std::move(oth.data)), prev(oth.prev), next(oth.next)

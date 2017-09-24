@@ -9,4 +9,8 @@ void TestList(void);
 void TestForwardList(void);
 
 void TestStack(void);
+
+void TestBalanceSigned(void);
+
+void TestPostfixNotation(void);
 #endif

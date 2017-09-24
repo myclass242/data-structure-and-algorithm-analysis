@@ -1,11 +1,14 @@
 ﻿#include "test.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "zyalg.h"
 #include "zyvector.h"
 #include "zylist.h"
 #include "zyforwardlist.h"
 #include "zystack.h"
+#include "usestack.h"
+#include "postfixnotation.h"
 
 void TestVector(void)
 {
@@ -107,4 +110,28 @@ void TestStack(void)
 	zy::stack<int> st2{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	std::cout << st2.top() << std::endl;
 	std::cout << "********************************zy::stack<int>*****************************" << std::endl;
+}
+
+void TestBalanceSigned(void)
+{
+	std::ifstream inFile;
+	inFile.open("zylist.h", std::ifstream::in);
+	if (!inFile.is_open())
+	{
+		std::cout << "Open File fail" << std::endl;
+	}
+	else
+	{
+		BalanceSigned(inFile);
+		inFile.close();
+	}
+}
+
+void TestPostfixNotation(void)
+{
+	std::string str;
+	std::cout << "Please enter a center notation:";
+	std::cin >> str;
+	std::cout << std::endl;
+	std::cout << "result is: " << PostfixNotation(str) << std::endl;
 }
