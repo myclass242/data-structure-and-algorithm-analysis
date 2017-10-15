@@ -303,7 +303,7 @@ public:
 		}
 	}
 
-	ValueType &back() const
+	const ValueType &back() const
 	{
 		if (!empty())
 		{

@@ -9,6 +9,13 @@
 #include "zystack.h"
 #include "usestack.h"
 #include "postfixnotation.h"
+#include "zyqueue.h"
+#include "exercise3_1.h"
+#include "exercise3_3.h"
+#include "exercise3_4.h"
+#include "exercise3_5.h"
+#include "exercise3_6.h"
+#include "selfadjustlist.h"
 
 void TestVector(void)
 {
@@ -134,4 +141,90 @@ void TestPostfixNotation(void)
 	std::cin >> str;
 	std::cout << std::endl;
 	std::cout << "result is: " << PostfixNotation(str) << std::endl;
+}
+
+void TestQueue(void)
+{
+
+#ifdef IMPLE_BY_ARRAY
+    zy::queue<int, 200> qi{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    std::cout << "CAPACITY : " << qi.capacity() << std::endl;
+#else
+    zy::queue<int> qi{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+#endif
+
+    std::cout << "*****************************************************" << std::endl;
+    std::cout << "SIZE : " << qi.size() << "  EMPTY : " << qi.isEmpty() << std::endl;
+    std::cout << "BACK : " << qi.back() << "  FRONT : " << qi.front() << std::endl;
+    std::cout << "*****************************************************" << std::endl;
+    qi.push(10);
+    std::cout << "SIZE : " << qi.size() << "  EMPTY : " << qi.isEmpty() << std::endl;
+    std::cout << "BACK : " << qi.back() << "  FRONT : " << qi.front() << std::endl;
+    std::cout << "*****************************************************" << std::endl;
+    qi.pop();
+    std::cout << "SIZE : " << qi.size() << "  EMPTY : " << qi.isEmpty() << std::endl;
+    std::cout << "BACK : " << qi.back() << "  FRONT : " << qi.front() << std::endl;
+    std::cout << "*****************************************************" << std::endl;
+
+    for (int i = 0; i < 80; ++i)
+    {
+        qi.push(i);
+        std::cout << "SIZE : " << qi.size() << "  EMPTY : " << qi.isEmpty() << std::endl;
+        std::cout << "BACK : " << qi.back() << "  FRONT : " << qi.front() << std::endl;
+    }
+}
+
+void TestExercise3_1(void)
+{
+    std::list<int> sour{ 0, 1, 2, 3, 4, 5, 6, 7 };
+    std::list<int> position{ 1, 2, 4, 6 };
+    PrintLots(sour, position);
+}
+
+void TestExercise3_3(void)
+{
+    zy::list<int> li{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    auto pos = zy::Find(li.begin(), li.end(), 7);
+    std::cout << *pos << std::endl;
+}
+
+void TestExercise3_4(void)
+{
+    zy::list<int> li1{ 1, 3, 5, 7, 9, 11, 13, 15};
+    zy::list<int> li2{ 10, 11, 12, 13, 14, 15};
+    zy::list<int> intersectionLst = zy::Intersection(li1, li2);
+    zy::Print(intersectionLst, std::cout);
+}
+
+void TestExercise3_5(void)
+{
+    zy::list<int> li1{ 1, 3, 5, 7, 9, 11, 13, 15 };
+    zy::list<int> li2{ 10, 11, 12, 13, 14, 15 };
+    zy::list<int> unionsetLst = zy::Unionset(li1, li2);
+    zy::Print(unionsetLst, std::cout);
+}
+
+void TestExercise3_6(void)
+{
+    int step = 0;
+    int numbers = 0;
+    std::cout << "输入步长和人数:";
+    std::cin >> step >> numbers;
+    PesephosProblem(step, numbers);
+}
+
+void TestSelfAdjustList(void)
+{
+    zy::SelfAdjustList<int> saL{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    zy::Print(saL, std::cout);
+    saL.find(5);
+    zy::Print(saL, std::cout);
+    auto saLBegin = saL.begin();
+    ++saLBegin;
+    saL.insert(saLBegin, 11);
+    std::cout << *saLBegin << std::endl;
+    zy::Print(saL, std::cout);
+    {
+        zy::SelfAdjustList<int> saL2{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    }
 }

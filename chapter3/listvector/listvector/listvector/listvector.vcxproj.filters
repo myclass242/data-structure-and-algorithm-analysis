@@ -13,6 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="exercises">
+      <UniqueIdentifier>{ee2a939d-7a25-4c17-b0ce-737627b40ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_3">
+      <UniqueIdentifier>{33808950-be0a-4167-afaf-465dba088967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_5">
+      <UniqueIdentifier>{eede9681-f675-49ec-9645-c915ef7bbddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_4">
+      <UniqueIdentifier>{96984a70-a6c5-4e9f-b656-f6e92fe131b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_1">
+      <UniqueIdentifier>{3f724040-1112-4592-aff3-ebd96db0de70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_1\include">
+      <UniqueIdentifier>{3619549d-1ccb-4b24-9380-48010b5a4948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_1\source">
+      <UniqueIdentifier>{1b50c47c-20e0-4c19-9c40-a2ebe8591dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_6">
+      <UniqueIdentifier>{602eab9b-1afa-4e24-855e-e77e8d408a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_6\include">
+      <UniqueIdentifier>{7e2d87d2-9b9a-4a71-9162-05fea6acbd44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exercises\exercise3_6\source">
+      <UniqueIdentifier>{3abe0688-df68-4a35-a49b-a245f03f797c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zyvector.h">
@@ -39,6 +69,30 @@
     <ClInclude Include="postfixnotation.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="figure3_25.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zyqueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exercise3_1.h">
+      <Filter>exercises\exercise3_1\include</Filter>
+    </ClInclude>
+    <ClInclude Include="exercise3_3.h">
+      <Filter>exercises\exercise3_3</Filter>
+    </ClInclude>
+    <ClInclude Include="exercise3_5.h">
+      <Filter>exercises\exercise3_5</Filter>
+    </ClInclude>
+    <ClInclude Include="exercise3_4.h">
+      <Filter>exercises\exercise3_4</Filter>
+    </ClInclude>
+    <ClInclude Include="exercise3_6.h">
+      <Filter>exercises\exercise3_6\include</Filter>
+    </ClInclude>
+    <ClInclude Include="selfadjustlist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="postfixnotation.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exercise3_1.cpp">
+      <Filter>exercises\exercise3_1\source</Filter>
+    </ClCompile>
+    <ClCompile Include="exercise3_6.cpp">
+      <Filter>exercises\exercise3_6\source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

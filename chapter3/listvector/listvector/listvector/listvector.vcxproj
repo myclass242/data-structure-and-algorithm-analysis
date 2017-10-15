@@ -139,9 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="exercise3_1.h" />
+    <ClInclude Include="exercise3_3.h" />
+    <ClInclude Include="exercise3_5.h" />
+    <ClInclude Include="exercise3_4.h" />
+    <ClInclude Include="exercise3_6.h" />
+    <ClInclude Include="figure3_25.h" />
     <ClInclude Include="postfixnotation.h" />
+    <ClInclude Include="selfadjustlist.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="usestack.h" />
+    <ClInclude Include="zyqueue.h" />
     <ClInclude Include="zyalg.h" />
     <ClInclude Include="zyforwardlist.h" />
     <ClInclude Include="zylist.h" />
@@ -149,6 +157,8 @@
     <ClInclude Include="zyvector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="exercise3_1.cpp" />
+    <ClCompile Include="exercise3_6.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="postfixnotation.cpp" />
     <ClCompile Include="test.cpp" />
