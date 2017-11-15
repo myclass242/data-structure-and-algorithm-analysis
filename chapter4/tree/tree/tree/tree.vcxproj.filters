@@ -18,5 +18,37 @@
     <ClInclude Include="tree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="binarytree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="infix2postfix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="expressiontree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="infix2postfix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="expressiontree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

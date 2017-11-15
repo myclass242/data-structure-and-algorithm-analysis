@@ -139,7 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.h" />
+    <ClInclude Include="binarytree.h" />
+    <ClInclude Include="expressiontree.h" />
+    <ClInclude Include="infix2postfix.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="tree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.cpp" />
+    <ClCompile Include="expressiontree.cpp" />
+    <ClCompile Include="infix2postfix.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
