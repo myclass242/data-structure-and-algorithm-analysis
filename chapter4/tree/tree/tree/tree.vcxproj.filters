@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{048fba67-2e8c-41d0-9229-7803776a1073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\binarysearchtreetest">
+      <UniqueIdentifier>{037c9826-7f5c-48f4-9863-6e103fb233d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\AVLtreetest">
+      <UniqueIdentifier>{f273a1e4-837b-4105-85f4-b32efd8978ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tree.h">
@@ -33,6 +42,12 @@
     <ClInclude Include="expressiontree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="binarysearchtree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLtree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -49,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="expressiontree.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="binarysearchtreetest.cpp">
+      <Filter>test\binarysearchtreetest</Filter>
+    </ClCompile>
+    <ClCompile Include="AVLtreetest.cpp">
+      <Filter>test\AVLtreetest</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -89,9 +89,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Program Files %28x86%29\googletest-master\googletest-master\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>E:\Program Files (x86)\googletest-master\googletest-master\googletest\msvc\2010\gtest\Win32-Debug\gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,6 +143,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.h" />
+    <ClInclude Include="AVLtree.h" />
+    <ClInclude Include="binarysearchtree.h" />
     <ClInclude Include="binarytree.h" />
     <ClInclude Include="expressiontree.h" />
     <ClInclude Include="infix2postfix.h" />
@@ -148,6 +153,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\chapter3\listvector\listvector\listvector\postfixnotation.cpp" />
+    <ClCompile Include="AVLtreetest.cpp" />
+    <ClCompile Include="binarysearchtreetest.cpp" />
     <ClCompile Include="expressiontree.cpp" />
     <ClCompile Include="infix2postfix.cpp" />
     <ClCompile Include="main.cpp" />
