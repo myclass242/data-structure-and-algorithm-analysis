@@ -115,12 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="employee.h" />
     <ClInclude Include="hash.h" />
     <ClInclude Include="primer.h" />
     <ClInclude Include="separatechaining.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="employee.cpp" />
     <ClCompile Include="hash.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="primer.cpp" />

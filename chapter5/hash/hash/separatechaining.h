@@ -14,7 +14,7 @@ template <typename HashObj>
 class SeparateChainingHash
 {
 public:
-    typedef HashObj ValueType;
+    typedef typename HashObj ValueType;
 public:
     explicit SeparateChainingHash(size_t num = 101)
         :hashTable(NextPrimer(num)), curSize(0)
@@ -40,28 +40,55 @@ public:
     {
         hashTable = std::move(oth);
         curSize = oth.curSize;
+        oth.curSize = 0;
         return *this;
+    }
+    void makeEmpty(void)
+    {
+        hashTable.clear();
+        curSize = 0;
     }
     bool contain(const ValueType &item) const
     {
-        auto whichList = std::find(hashTable[arrayIdx].cbegin(), hashTable[arrayIdx].cend(), item);
-        return whichList != hashTable[myHash(item)].cend();
+        const auto &whichList = hashTable[myHash(item)];
+        return std::find(whichList.cbegin(), whichList.cend(), item) != whichList.cend();
     }
-
-    bool insert(const ValueType &item)
+    bool remove(const ValueType &item)
     {
-        auto whichList = std::find(hashTable[myHash(item)].cbegin(), hashTable[myHash(item)].cend(), item);
-        if (whichList == hashTable[myHash(item)].cend())
+        auto &whichList = hashTable[myHash(item)];
+        typename std::forward_list<ValueType>::iterator posBefore = whichList.before_begin();
+        for (; std::next(posBefore) != whichList.end(); ++posBefore)
         {
-            hashTable[myHash(item)].push_front(item);
-            ++curSize;
-            if (curSize > hashTable.size())
+            if (item == *std::next(posBefore))
             {
-                reHash();
+                whichList.erase_after(posBefore);
+                --curSize;
+                return true;
             }
-            return true;
         }
         return false;
+    }
+    bool insert(ValueType &&item)
+    {
+        auto &whichList = hashTable[myHash(item)];
+
+        if (std::find(whichList.cbegin(), whichList.cend(), item) != whichList.cend())
+        {
+            return false;
+        }
+
+        whichList.push_front(std::move(item));
+        if (++curSize > hashTable.size())
+        {
+            reHash();
+        }
+        
+        return true;
+    }
+    bool insert(const ValueType &item)
+    {
+        ValueType tmp = item;
+        return insert(std::move(tmp));
     }
     void show(void) const
     {
@@ -73,7 +100,7 @@ public:
                 std::cout << "Hash Table cell " << arrayIdx << ':' << ' ';
                 for (const auto &item : list)
                 {
-                    std::cout << item << ' ';
+                    std::cout << item << ';';
                 }
                 std::cout << std::endl;
             }

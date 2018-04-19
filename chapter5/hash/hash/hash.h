@@ -3,6 +3,7 @@
 #define HASH_H_
 
 #include <string>
+#include "employee.h"
 
 int SimpleStrHash1(const std::string &str, int tableSize);
 
@@ -37,6 +38,16 @@ struct Hash<int>
     size_t operator()(int x) const
     {
         return x;
+    }
+};
+
+template <>
+struct Hash<Employee>
+{
+    size_t operator()(const Employee &eple) const
+    {
+        static Hash<std::string> hs;
+        return hs(eple.getName());
     }
 };
 
