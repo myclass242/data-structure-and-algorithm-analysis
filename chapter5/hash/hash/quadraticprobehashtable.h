@@ -131,10 +131,13 @@ private:
     {
         SizeType probTimes = 0;
         SizeType pos = MyHash(item);
-        while (hashTable[pos].item != item && hashTable[pos].info != EMPTY)
+        while (hashTable[pos].info != EMPTY && hashTable[pos].item != item)
         {
             pos += prob(++probTimes);
-            pos = pos % hashTable.size();
+            if (pos >= hashTable.size())
+            {
+                pos -= hashTable.size();
+            }
         }
         return pos;
     }
