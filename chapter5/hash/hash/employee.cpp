@@ -53,6 +53,10 @@ const std::string &Employee::getName(void) const
 
 std::ostream & operator<<(std::ostream & out, const Employee & empl)
 {
-    out << "name: " << empl.name << ", " << "address: " << empl.address << ", " << "phone: " << empl.phoneNumber;
+    if (out)
+    {
+        out << "name: " << empl.name << ", " << "address: " << empl.address << ", " << "phone: " << empl.phoneNumber;
+    }
+    
     return out;
 }

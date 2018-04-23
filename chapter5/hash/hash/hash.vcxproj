@@ -118,6 +118,7 @@
     <ClInclude Include="employee.h" />
     <ClInclude Include="hash.h" />
     <ClInclude Include="primer.h" />
+    <ClInclude Include="quadraticprobehashtable.h" />
     <ClInclude Include="separatechaining.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>

@@ -24,3 +24,30 @@ void TestSeparateChainingHash(void)
     eplHash.remove(epl1);
     eplHash.show();
 }
+
+void TestQuadraticProbeHash(void)
+{
+    QuadraticProbeHashTable<int> qpHash;
+    std::default_random_engine e1;
+    std::uniform_int_distribution<int> r1(100, 999);
+    for (int n = 0; n < 200; ++n)
+    {
+        qpHash.insert(r1(e1));
+    }
+    std::cout << qpHash << std::endl;
+
+    std::default_random_engine e2;
+    std::uniform_int_distribution<int> r2(100, 999);
+    for (int n = 0; n < 100; ++n)
+    {
+        qpHash.remove(r2(e2));
+    }
+    for (int n = 0; n < 10; ++n)
+    {
+        int x = r2(e2);
+        std::cout << x << " is contain: " << qpHash.contain(x) << std::endl;
+    }
+
+    qpHash.makeEmpty();
+    std::cout << "Quadratic probe hashtable has " << qpHash.size() << " elements" << std::endl;
+}
