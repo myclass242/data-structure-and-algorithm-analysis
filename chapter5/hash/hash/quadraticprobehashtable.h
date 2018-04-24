@@ -73,7 +73,7 @@ public:
             hashTable[pos].info = ACTIVE;
         }
 
-        if (++curSzie > hashTable.size() / 2)
+        if (++curSzie * 10 > hashTable.size() * ratio4Rehash)
         {
             reHash();
         }
@@ -166,6 +166,7 @@ private:
 private:
     std::vector<HashEntry> hashTable;
     SizeType curSzie;
+    static const int ratio4Rehash = 4;
 };
 
 #endif
