@@ -9,6 +9,7 @@ int main(void)
 
     TestSeparateChainingHash();
     TestQuadraticProbeHash();
+    TestExercise13();
     std::forward_list<int> fl;
     std::forward_list<int>::iterator it1 = fl.before_begin();
     

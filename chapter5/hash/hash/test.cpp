@@ -51,3 +51,11 @@ void TestQuadraticProbeHash(void)
     qpHash.makeEmpty();
     std::cout << "Quadratic probe hashtable has " << qpHash.size() << " elements" << std::endl;
 }
+
+void TestExercise13(void)
+{
+    std::string ori = "aoic9faoicfhaww0g\agcoaiocgagcopa\\g-232awgkoajogia";
+    std::string target = "aoic9faoicfhaww0g\agcoaiocgagcopa\\g-232awg";
+    auto pos = findString(ori, target);
+    std::cout << (pos >= 0 ? ori.substr(pos, target.length()) : "-1") << std::endl;
+}

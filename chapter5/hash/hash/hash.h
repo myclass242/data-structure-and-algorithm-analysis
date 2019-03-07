@@ -3,6 +3,7 @@
 #define HASH_H_
 
 #include <string>
+#include <math.h>
 #include "employee.h"
 
 int SimpleStrHash1(const std::string &str, int tableSize);
@@ -20,13 +21,37 @@ struct Hash
 template <>
 struct Hash<std::string>
 {
+    static const std::size_t FACTOR = 37;
     size_t operator()(const std::string &str) const
     {
         size_t hashVal = 0;
 
         for (char ch : str)
         {
-            hashVal = ch + 37 * hashVal;
+            hashVal = ch + FACTOR * hashVal;
+        }
+        return hashVal;
+    }
+
+    std::size_t operator()(const std::string& str, int start, int length, std::size_t preHashVal) const
+    {
+        std::size_t hashVal = preHashVal;
+        std::size_t preVal = str[start - 1];
+        for (int k = 0; k < length - 1; ++k)
+        {
+            preVal = FACTOR * preVal;
+        }
+        hashVal -= preVal;
+        hashVal = str[start + length - 1] + FACTOR * hashVal;
+        return hashVal;
+    }
+
+    std::size_t operator()(const std::string& str, int start, int length) const
+    {
+        std::size_t hashVal = 0;
+        for (int i = 0; i < length; ++i)
+        {
+            hashVal = str[start + i] + FACTOR * hashVal;
         }
         return hashVal;
     }

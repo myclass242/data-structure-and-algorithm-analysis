@@ -1,5 +1,7 @@
-﻿  main.cpp
-  正在生成代码...
-  正在跳过...(未检测到相关更改)
+﻿  exercise13.cpp
+e:\git\data-structure-and-algorithm-analysis\chapter5\hash\hash\exercise13.cpp(19): warning C4018: “<”: 有符号/无符号不匹配
+  hash.cpp
+  main.cpp
   test.cpp
-  hash.vcxproj -> E:\GIT\dsaa\chapter5\hash\Debug\hash.exe
+  正在生成代码...
+  hash.vcxproj -> E:\GIT\data-structure-and-algorithm-analysis\chapter5\hash\Debug\hash.exe

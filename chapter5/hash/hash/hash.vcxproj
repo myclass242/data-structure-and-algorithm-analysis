@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="employee.h" />
+    <ClInclude Include="exercise13.h" />
     <ClInclude Include="hash.h" />
     <ClInclude Include="primer.h" />
     <ClInclude Include="quadraticprobehashtable.h" />
@@ -124,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="employee.cpp" />
+    <ClCompile Include="exercise13.cpp" />
     <ClCompile Include="hash.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="primer.cpp" />

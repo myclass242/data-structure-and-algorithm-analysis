@@ -33,6 +33,9 @@
     <ClInclude Include="quadraticprobehashtable.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="exercise13.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="employee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exercise13.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
