@@ -1,0 +1,25 @@
+﻿  main.cpp
+  test.cpp
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\test.cpp(12): warning C4018: “<”: 有符号/无符号不匹配
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\sort.h(33): warning C4018: “<”: 有符号/无符号不匹配
+  e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\test.cpp(35): note: 参见对正在编译的函数 模板 实例化“void bubbleSort<int>(std::vector<int,std::allocator<_Ty>> &)”的引用
+          with
+          [
+              _Ty=int
+          ]
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\sort.h(35): warning C4018: “<”: 有符号/无符号不匹配
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\sort.h(49): warning C4018: “<”: 有符号/无符号不匹配
+  e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\test.cpp(48): note: 参见对正在编译的函数 模板 实例化“void selectiionSort<int>(std::vector<int,std::allocator<_Ty>> &)”的引用
+          with
+          [
+              _Ty=int
+          ]
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\sort.h(53): warning C4018: “<”: 有符号/无符号不匹配
+e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\sort.h(72): warning C4018: “<”: 有符号/无符号不匹配
+  e:\git\data-structure-and-algorithm-analysis\chapter7\sort\sort\test.cpp(52): note: 参见对正在编译的函数 模板 实例化“void shellSort<int>(std::vector<int,std::allocator<_Ty>> &)”的引用
+          with
+          [
+              _Ty=int
+          ]
+  正在生成代码...
+  sort.vcxproj -> E:\GIT\data-structure-and-algorithm-analysis\chapter7\sort\Debug\sort.exe
