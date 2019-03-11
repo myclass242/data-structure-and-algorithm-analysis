@@ -236,6 +236,10 @@ public:
     {
         quickSort(array, 0, array.size() - 1);
     }
+    void operator()(std::vector<Comparable>& array, int k)
+    {
+        quickSlect(array, 0, array.size() - 1, k);
+    }
 private:
     const Comparable& median3(std::vector<Comparable>& array, int left, int right)
     {
@@ -291,5 +295,94 @@ private:
             insertionSort(array, left, right);
         }
     }
+    void quickSlect(std::vector<Comparable>& array, int left, int right, int k)
+    {
+        using std::swap;
+
+        if (left + 10 <= right)
+        {
+            int pivot = median3(array, left, right);
+            int i = left, j = right - 1;
+            while (true)
+            {
+                while (array[++i] < pivot) {}
+                while (array[--j] > pivot) {}
+                if (i < j)
+                {
+                    swap(array[i], array[j]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            swap(array[i], array[right - 1]);
+
+            if (k == i)
+            {
+                return;
+            }
+            else if (k < i)
+            {
+                quickSlect(array, left, i - 1, k);
+            }
+            else
+            {
+                quickSlect(array, i + 1, right, k);
+            }
+        }
+        else
+        {
+            insertionSort(array, left, right);
+        }
+    }
 };
+
+//排序一千以内的自然数
+inline void radixSort(std::vector<int>& array)
+{
+    const int RADIX = 10;
+    std::vector<std::vector<int>> buckets(RADIX);
+
+    for (int exp = 1; 999 / exp > 0; exp *= 10)
+    {
+        for (auto& item : array)
+        {
+            buckets[(item / exp) % 10].push_back(std::move(item));
+        }
+        int idx = 0;
+        for (auto& bucket : buckets)
+        {
+            for (auto& item : bucket)
+            {
+                array[idx++] = std::move(item);
+            }
+            bucket.clear();
+        }
+    }
+}
+
+inline void radixSortA(std::vector<std::string>& array, int length)
+{
+    const int BUCKETS = 256;
+    std::vector<std::vector<std::string>> buckets(BUCKETS);
+
+    for (int i = length - 1; i >= 0; --i)
+    {
+        for (auto& str : array)
+        {
+            buckets[str[i]].push_back(std::move(str));
+        }
+
+        int idx = 0;
+        for (auto& bucket : buckets)
+        {
+            for (auto& str : bucket)
+            {
+                array[idx++] = std::move(str);
+            }
+            bucket.clear();
+        }
+    }
+}
 #endif

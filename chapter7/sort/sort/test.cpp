@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 static void printVector(const std::vector<int>& array, std::string usage)
 {
@@ -24,7 +25,7 @@ void testSort(void)
     auto r = std::bind(g, e);
 
     std::vector<int> maternal;
-    for (int i = 0; i < 15; ++i)
+    for (int i = 0; i < 55; ++i)
     {
         //maternal.push_back(r());
         maternal.push_back(g(rd));
@@ -65,4 +66,38 @@ void testSort(void)
     QuickSort<int> quickSort;
     quickSort(quickSortVector);
     printVector(quickSortVector, "quickSort");
+
+    auto bucketSortVector = maternal;
+    radixSort(bucketSortVector);
+    printVector(bucketSortVector, "bucketSort");
+}
+
+void createRandomNumberFile(const std::string & fileName)
+{
+    std::random_device rd;
+    std::uniform_int_distribution<int> g;
+
+    std::ofstream out(fileName, std::ios::out | std::ios::trunc);
+
+    for (uint64_t i = 0; i < UINT16_MAX; ++i)
+    //for (int i = 0; i < INT16_MAX; ++i)
+    {
+        out << g(rd) << " ";
+    }
+    out.close();
+}
+
+void sortRandomNumberFile(const std::string & fileName)
+{
+    std::ifstream in(fileName);
+    std::vector<int> array(UINT16_MAX);
+    while (in)
+    {
+        int num;
+        in >> num;
+        array.push_back(num);
+    }
+    QuickSort<int> quickSort;
+    quickSort(array);
+    printVector(array, "sortRandomNumberFile");
 }
