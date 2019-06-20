@@ -13,18 +13,18 @@ public:
     explicit BinaryHeap2(int capacity = 100)
         : currentSize_(0)
     {
-        if (capacity < 3)
-        {
-            capacity = 3;
-        }
-        array_.resize(capacity);
+        array_.reserve(capacity);
+        array_.push_back(Compare{});
     }
     explicit BinaryHeap2(const std::vector<Compare>& items)
-        : array_(items.size() + 10), currentSize_(items.size())
+        : currentSize_(items.size())
     {
-        for (int k = 0; k < items.size(); ++k)
+        array_.reserve(items.size() + 1);
+        array_.push_back(Compare{});
+
+        for (const auto& item : items)
         {
-            array_[k + 1] = items[k];
+            array_.push_back(item);
         }
         buildHeap();
     }
