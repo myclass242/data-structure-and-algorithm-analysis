@@ -1,4 +1,4 @@
-﻿  Graph.cpp
-  Vertex.cpp
-  正在生成代码...
-LINK : fatal error LNK1561: 必须定义入口点
+﻿  main.cpp
+  test1.cpp
+  Generating Code...
+  graph.vcxproj -> E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\Debug\graph.exe

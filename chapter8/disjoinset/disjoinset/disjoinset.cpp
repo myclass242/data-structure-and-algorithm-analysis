@@ -1,12 +1,8 @@
 #include "disjoinset.h"
 
 DisjoinSets::DisjoinSets(int numElements)
-    : s(numElements)
+    : s(numElements, -1)
 {
-    for (int i = 0; i < numElements; ++i)
-    {
-        s[i] = -1;
-    }
 }
 
 int DisjoinSets::find(int x)
@@ -53,6 +49,8 @@ void DisjoinSets::unionSet(int root1, int root2)
 
 #if 0
     // union by size
+	// The array entry of each root contain the
+	// negative of the size of its tree(set)
     if (s[root1] < s[root2])
     {
         s[root1] += s[root2];
@@ -65,6 +63,8 @@ void DisjoinSets::unionSet(int root1, int root2)
     }
 #else
     // union by height
+	// The heigh of a tree increase(to negative) only when two 
+	// equally deep trees are joined(and then the height goes up by one)
     if (s[root1] < s[root2])
     {
         s[root2] = root1;
