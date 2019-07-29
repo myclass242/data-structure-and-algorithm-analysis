@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="HeapBinary.h" />
     <ClInclude Include="test1.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>

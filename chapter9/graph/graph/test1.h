@@ -6,5 +6,6 @@
 
 void test_topological_sort();
 void test_unweight_shortest_path();
+void test_dijkstra();
 
 #endif

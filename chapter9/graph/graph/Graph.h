@@ -9,8 +9,10 @@
 #include <queue>
 #include <vector>
 #include <iostream>
+#include <assert.h>
 
 #include "Vertex.h"
+#include "HeapBinary.h"
 
 template <typename T>
 class Graph {
@@ -35,7 +37,7 @@ class Graph {
     }
   }
 
-  void add_edge(const T& from, const T& to, bool orient) 
+  void add_edge(const T& from, const T& to, bool orient, int weight = 1) 
   {
     auto from_ver = find_vertex(from);
     auto to_ver = find_vertex(to);
@@ -43,7 +45,7 @@ class Graph {
       std::cout << "not exist" << std::endl;
     }
 
-    do_add_edge(from_ver, to_ver, orient);
+    do_add_edge(from_ver, to_ver, orient, weight);
   }
   void topological_sort() {
     std::queue<std::shared_ptr<VertexType>> q;
@@ -110,6 +112,57 @@ class Graph {
     std::cout << std::endl;
   }
 
+  void dijkstra(const T& s)
+  {
+      std::queue<std::shared_ptr<VertexType>> q;
+      auto ver = find_vertex(s);
+      if (!ver) {
+          return;
+      }
+      for (auto& vertex : vertes_)
+      {
+          vertex->set_distance(INT_MAX);
+          vertex->set_known(false);
+      }
+      ver->set_distance(0);
+      struct LessHelper {
+          bool operator()(const std::shared_ptr<VertexType>& lhs, const std::shared_ptr<VertexType>& rhs) {
+              return lhs->distance() < rhs->distance();
+          }
+      };
+      BinaryHeap<std::shared_ptr<VertexType>, LessHelper> unknow_distance{ vertes_ };
+      while (!unknow_distance.isEmpty())
+      {
+          std::shared_ptr <VertexType> min;
+          unknow_distance.deleteMin(min);
+          min->set_known(true);
+          q.push(min);
+          assert(min->adjance().size() == min->weights().size());
+          auto adj_ite = min->adjance().begin();
+          auto weights_ite = min->weights().begin();
+          for (;
+              (adj_ite != min->adjance().end()) && (weights_ite != min->weights().end());
+              ++adj_ite, ++weights_ite)
+          {
+              auto strong = adj_ite->lock();
+              if (!strong->known())
+              {
+                  if (strong->distance() > min->distance() + *weights_ite)
+                  {
+                      // ÌØÊâ´¦Àí decreaseKey
+                      strong->set_distance(min->distance() + *weights_ite);
+                      unknow_distance.decreaseKey(unknow_distance.find(strong));
+                      strong->set_prepath(min);
+                  }
+              }
+          }
+      }
+
+      while (!q.empty()) {
+        std::cout << q.front()->name() << " : " << q.front()->distance() << std::endl;
+        q.pop();
+      }  
+  }
  private:
     std::shared_ptr<VertexType> find_vertex(const T& x)
     {
@@ -123,12 +176,12 @@ class Graph {
         return *ite;
     }
   void do_add_edge(std::shared_ptr<VertexType> from,
-                   std::shared_ptr<VertexType> to, bool orient) {
-    from->add_adjance(to);
+                   std::shared_ptr<VertexType> to, bool orient, int weight) {
+    from->add_adjance(to, weight);
     if (orient) {
       return;
     }
-    do_add_edge(to, from, !orient);
+    do_add_edge(to, from, !orient, weight);
   }
 
  private:

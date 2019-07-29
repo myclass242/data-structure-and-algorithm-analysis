@@ -1,4 +1,53 @@
 ﻿  main.cpp
   test1.cpp
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(83,2): warning C4018:  '<': signed/unsigned mismatch
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :  while compiling class template member function 'int BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::find(const std::shared_ptr<Vertex<T>> &)'
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :  see reference to function template instantiation 'int BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::find(const std::shared_ptr<Vertex<T>> &)' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :  see reference to class template instantiation 'BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(116): message :  while compiling class template member function 'void Graph<int>::dijkstra(const T &)'
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(116): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(116): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(116): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(116): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message :  see reference to function template instantiation 'void Graph<int>::dijkstra(const T &)' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(5): message :  see reference to class template instantiation 'Graph<int>' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(210,28): warning C4018:  '>': signed/unsigned mismatch
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(209): message :  while compiling class template member function 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::checkPosition(int)'
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(209): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(209): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(209): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(209): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(101): message :  see reference to function template instantiation 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::checkPosition(int)' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(101): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(101): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(101): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(101): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(133,25): warning C4018:  '<=': signed/unsigned mismatch
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message :  while compiling class template member function 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateDown(int)'
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message :         ]
   Generating Code...
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message :  see reference to function template instantiation 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateDown(int)' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message :         ]
   graph.vcxproj -> E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\Debug\graph.exe
