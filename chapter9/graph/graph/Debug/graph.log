@@ -6,11 +6,11 @@ E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(8
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :         [
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :             T=int
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(82): message :         ]
-E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :  see reference to function template instantiation 'int BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::find(const std::shared_ptr<Vertex<T>> &)' being compiled
-E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         with
-E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         [
-E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :             T=int
-E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(154): message :         ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(150): message :  see reference to function template instantiation 'int BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::find(const std::shared_ptr<Vertex<T>> &)' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(150): message :         with
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(150): message :         [
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(150): message :             T=int
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(150): message :         ]
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :  see reference to class template instantiation 'BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>' being compiled
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :         with
 E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(133): message :         [

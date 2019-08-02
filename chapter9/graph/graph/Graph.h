@@ -59,8 +59,8 @@ class Graph {
       auto v = q.front();
       q.pop();
       v->set_tological_sort(count++);
-      for (const auto& vertex : v->adjance()) {
-        auto strong = vertex.lock();
+      for (const auto& vertexInfo : v->adjance()) {
+        auto strong = vertexInfo.vertex_.lock();
         strong->decrease_indegree();
         if (strong->indegree() == 0) {
           q.push(strong);
@@ -93,7 +93,7 @@ class Graph {
         auto v = q.front();
         q.pop_front();
         for (auto ad : v->adjance()) {
-            auto strong = ad.lock();
+            auto strong = ad.vertex_.lock();
             if (strong->distance() == -1) {
                 strong->set_distance(v->distance() + 1);
                 strong->set_prepath(v);
@@ -137,20 +137,16 @@ class Graph {
           unknow_distance.deleteMin(min);
           min->set_known(true);
           q.push(min);
-          assert(min->adjance().size() == min->weights().size());
           auto adj_ite = min->adjance().begin();
-          auto weights_ite = min->weights().begin();
-          for (;
-              (adj_ite != min->adjance().end()) && (weights_ite != min->weights().end());
-              ++adj_ite, ++weights_ite)
+          for (; adj_ite != min->adjance().end(); ++adj_ite)
           {
-              auto strong = adj_ite->lock();
+              auto strong = adj_ite->vertex_.lock();
               if (!strong->known())
               {
-                  if (strong->distance() > min->distance() + *weights_ite)
+                  if (strong->distance() > min->distance() + adj_ite->weight_)
                   {
                       // 特殊处理 decreaseKey
-                      strong->set_distance(min->distance() + *weights_ite);
+                      strong->set_distance(min->distance() + adj_ite->weight_);
                       unknow_distance.decreaseKey(unknow_distance.find(strong));
                       strong->set_prepath(min);
                   }
@@ -162,6 +158,47 @@ class Graph {
         std::cout << q.front()->name() << " : " << q.front()->distance() << std::endl;
         q.pop();
       }  
+  }
+  void weightedNegative(const T& s)
+  {
+      std::queue<std::shared_ptr<VertexType>> q;
+      auto ver = find_vertex(s);
+      if (!ver) {
+          return;
+      }
+      for (auto& vertex : vertes_)
+      {
+          vertex->set_distance(INT_MAX);
+          vertex->set_known(false);
+      }
+      ver->set_distance(0);
+      q.push(ver);
+      while (!q.empty()) {
+          auto v = q.front();
+          q.pop();
+          v->set_known(false);
+
+          auto adj_ite = v->adjance().begin();
+          for (; adj_ite != v->adjance().end(); ++adj_ite)
+          {
+              auto strong = adj_ite->vertex_.lock();
+                if (strong->distance() > v->distance() + adj_ite->weight_)
+                {
+                    // 特殊处理 decreaseKey
+                    strong->set_distance(v->distance() + adj_ite->weight_);
+                    strong->set_prepath(v);
+                    if (!strong->known()) {
+                        q.push(strong);
+                        strong->set_known(true);
+                    }
+                }
+          }
+      }
+  }
+  void eventNodeGraph()
+  {
+      topological_sort();
+
   }
  private:
     std::shared_ptr<VertexType> find_vertex(const T& x)

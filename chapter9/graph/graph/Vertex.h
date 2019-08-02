@@ -5,8 +5,14 @@
 #include <memory>
 
 template <typename T>
-class Vertex
+class Vertex : public std::enable_shared_from_this<Vertex<T>>
 {
+public:
+    struct VertexInfo
+    {
+        std::weak_ptr<Vertex> vertex_;
+        int weight_;
+    };
 public:
 	Vertex(T v)
 		: v_(v),
@@ -43,36 +49,41 @@ public:
 	}
 	void add_adjance(std::shared_ptr<Vertex> other, int weight = 1)
 	{
-		adjance_vertexes_.push_back(other);
+        VertexInfo info{ other, weight };
+        adjance_vertexes_.push_back(info);
 		other->increase_indegree();
-        weights_.push_back(weight);
+
+        VertexInfo pre_info{ this->weak_from_this(), weight };
+        other->pre_adjance_vertexes_.push_back(pre_info);
 	}
 	void add_adjance(std::weak_ptr<Vertex> other, int weight = 1)
 	{
-		adjance_vertexes_.push_back(other);
+        VertexInfo info{ other, weight };
+		adjance_vertexes_.push_back(info);
 		other.lock()->increase_indegree();
-        weights_.push_back(weight);
+
+        VertexInfo pre_info{ this->weak_from_this(), weight };
+        other.lock()->pre_adjance_vertexes_.push_back(pre_info);
 	}
 	const T& value() const noexcept
 	{
 		return v_;
 	}
-	std::list<std::weak_ptr<Vertex>>& adjance() noexcept
+    std::list<VertexInfo>& adjance() noexcept
 	{
 		return adjance_vertexes_;
 	}
-    std::vector<int>& weights() noexcept
+    std::list<VertexInfo>& pre_adjance() noexcept
     {
-        return weights_;
+        return pre_adjance_vertexes_;
     }
     int weight(std::weak_ptr<Vertex> adj) const noexcept
     {
-        auto ite = std::find(adjance_vertexes_.begin(), adjance_vertexes_.end(), adj);
-        if (ite == adjance_vertexes_.end())
-        {
-            throw std::exception("not a adjance");
-        }
-        return weights_[ite - adjance_vertexes_.begin()];
+        return get_weight(adjance_vertexes_, adj);
+    }
+    int pre_weight(std::weak_ptr<Vertex> adj) const noexcept
+    {
+        return get_weight(pre_adjance_vertexes_, adj);
     }
 	void set_distance(int dist) noexcept
 	{
@@ -99,9 +110,20 @@ public:
         return path_;
     }
 private:
+    int get_weight(const std::list<VertexInfo>& vertexes, std::weak_ptr<Vertex> adj) const noexcept
+    {
+        auto ite = std::find_if(vertexes.begin(), vertexes.end(),
+            [&](const VertexInfo& info) { return adj == info.vertex_; });
+        if (ite == vertexes.end())
+        {
+            throw std::exception("not a adjance");
+        }
+        return ite->weight_;
+    }
+private:
 	T v_;
-	std::list<std::weak_ptr<Vertex>> adjance_vertexes_;
-    std::vector<int> weights_;
+	std::list<VertexInfo> adjance_vertexes_;
+    std::list<VertexInfo> pre_adjance_vertexes_;
 	int topological_sort_number_;
 	int indegree_;
     bool known_;
