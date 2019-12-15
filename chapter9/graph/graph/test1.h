@@ -7,5 +7,5 @@
 void test_topological_sort();
 void test_unweight_shortest_path();
 void test_dijkstra();
-
+void test_event_node_graph();
 #endif

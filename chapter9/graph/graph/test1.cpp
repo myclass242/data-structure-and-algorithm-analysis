@@ -60,4 +60,32 @@ void test_dijkstra()
     graph.add_edge(7, 6, true, 1);
 
     graph.dijkstra(1);
+    graph.weight_shortest_path(1);
+}
+
+void test_event_node_graph()
+{
+    Graph<int> graph;
+    graph.add_vertex({ 1, 2, 3, 4, 5, 6, 66, 77, 88, 7, 8, 9, 1010, 10 });
+    graph.add_edge(1, 2, true, 3);
+    graph.add_edge(1, 3, true, 2);
+    graph.add_edge(2, 66, true, 0);
+    graph.add_edge(3, 66, true, 0);
+    graph.add_edge(2, 4, true, 3);
+    graph.add_edge(3, 5, true, 1);
+    graph.add_edge(66, 6, true, 2);
+    graph.add_edge(6, 77, true, 0);
+    graph.add_edge(6, 88, true, 0);
+    graph.add_edge(4, 77, true, 0);
+    graph.add_edge(5, 88, true, 0);
+    graph.add_edge(77, 7, true, 3);
+    graph.add_edge(5, 9, true, 4);
+    graph.add_edge(88, 8, true, 2);
+    graph.add_edge(7, 1010, true, 0);
+    graph.add_edge(8, 1010, true, 0);
+    graph.add_edge(9, 1010, true, 0);
+    graph.add_edge(1010, 10, true, 1);
+
+    graph.eventNodeGraph();
+
 }

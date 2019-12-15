@@ -17,9 +17,10 @@ public:
 	Vertex(T v)
 		: v_(v),
 		topological_sort_number_(-1),
-		indegree_(0), 
+		indegree_(0),
+        in_queue_(false),
         distance_(-1)
-        //path_(nullptr)
+        //prepath_(nullptr)
 	{}
 
     const T& name() const noexcept
@@ -58,12 +59,7 @@ public:
 	}
 	void add_adjance(std::weak_ptr<Vertex> other, int weight = 1)
 	{
-        VertexInfo info{ other, weight };
-		adjance_vertexes_.push_back(info);
-		other.lock()->increase_indegree();
-
-        VertexInfo pre_info{ this->weak_from_this(), weight };
-        other.lock()->pre_adjance_vertexes_.push_back(pre_info);
+        add_adjance(other.lock(), weight);
 	}
 	const T& value() const noexcept
 	{
@@ -85,13 +81,21 @@ public:
     {
         return get_weight(pre_adjance_vertexes_, adj);
     }
+    void set_in_queue(bool in_queue) noexcept
+    {
+        in_queue_ = in_queue;
+    }
+    bool in_queue() const noexcept
+    {
+        return in_queue_;
+    }
 	void set_distance(int dist) noexcept
 	{
 		distance_ = dist;
 	}
 	void set_prepath(std::weak_ptr<Vertex> pre)
 	{
-		path_ = pre;
+		prepath_ = pre;
 	}
     void set_known(bool know) noexcept
     {
@@ -105,9 +109,9 @@ public:
     {
         return distance_;
     }
-    std::weak_ptr<Vertex> path() noexcept
+    std::weak_ptr<Vertex> prepath() noexcept
     {
-        return path_;
+        return prepath_;
     }
 private:
     int get_weight(const std::list<VertexInfo>& vertexes, std::weak_ptr<Vertex> adj) const noexcept
@@ -127,8 +131,9 @@ private:
 	int topological_sort_number_;
 	int indegree_;
     bool known_;
+    bool in_queue_;
 	int distance_;
-	std::weak_ptr<Vertex> path_;
+	std::weak_ptr<Vertex> prepath_;
 };
 
 #endif

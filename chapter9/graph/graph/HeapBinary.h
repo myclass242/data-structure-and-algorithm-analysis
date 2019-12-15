@@ -52,7 +52,6 @@ public:
 
         array_[0] = std::move(x);
         SizeType hole = ++currentSize_;
-        //for (; array_[0] < array_[hole / 2]; hole /= 2)
         for (; comFunc_(array_[0], array_[hole / 2]); hole /= 2)
         {
             array_[hole] = std::move(array_[hole / 2]);
@@ -100,7 +99,6 @@ public:
     {
         checkPosition(pos);
 
-        //array_[pos] -= delta;
         percolateUp(pos);
     }
     void increaseKey(int pos, T delta)
@@ -133,12 +131,11 @@ private:
         while (2 * hole <= currentSize_)
         {
             child = 2 * hole;
-            //if (child != currentSize_ && array_[child] > array_[child + 1])
             if (child != currentSize_ && comFunc_(array_[child + 1], array_[child]))
             {
                 ++child;
             }
-            if (tmp > array_[child])
+            if (comFunc_(array_[child], tmp))
             {
                 array_[hole] = std::move(array_[child]);
             }
@@ -169,12 +166,10 @@ private:
         for (; 2 * hole < currentSize_; hole = child)
         {
             child = 2 * hole;
-            //if (array_[child] > array_[child + 1])
             if (comFunc_(array_[child + 1], array_[child]))
             {
                 ++child;
             }
-            //if (tmp > array_[child])
             if (comFunc_(array_[child], tmp))
             {
                 array_[hole] = std::move(array_[child]);
@@ -193,7 +188,6 @@ private:
         for (; hole >= 1; hole = parent)
         {
             parent = hole / 2;
-            //if (parent > 0 && array_[parent] > tmp)
             if (parent > 0 && comFunc_(tmp, array_[parent]))
             {
                 array_[hole] = std::move(array_[parent]);

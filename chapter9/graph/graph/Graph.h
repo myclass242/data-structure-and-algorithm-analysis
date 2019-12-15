@@ -104,12 +104,57 @@ class Graph {
 
     for (const auto& ver : vertes_) {
         std::cout << ver->name() << " : " << ver->distance() << " prepath ";
-        if (ver->path().lock()) {
-            std::cout << ver->path().lock()->name();
+        if (ver->prepath().lock()) {
+            std::cout << ver->prepath().lock()->name();
         }
         std::cout << '\n';
     }
     std::cout << std::endl;
+  }
+
+  // my weight shortest path
+  // Not as goog as dijkstra
+  void weight_shortest_path(const T& s)
+  {
+      auto ver = find_vertex(s);
+      if (!ver) {
+          return;
+      }
+      for (auto& vertex : vertes_) {
+          vertex->set_distance(INT_MAX);
+          ver->set_in_queue(false);
+      }
+      ver->set_distance(0);
+      std::queue<decltype(ver)> q;
+      q.push(ver);
+      ver->set_in_queue(true);
+      while (!q.empty()) {
+          auto v = q.front();
+          q.pop();
+          v->set_in_queue(false);
+          for (auto& ad_ver : v->adjance()) {
+              auto strong = ad_ver.vertex_.lock();
+              if (strong->distance() > v->distance() + ad_ver.weight_) {
+                  strong->set_distance(v->distance() + ad_ver.weight_);
+                  // If vertex changed, its adjance may need changed too,
+                  // so we enqueue the vertex
+                  if (!strong->in_queue()) {
+                      q.push(strong);
+                      strong->set_in_queue(true);
+                  }
+                  strong->set_prepath(v);
+              }
+          }
+      }
+
+      for (const auto& ver : vertes_) {
+          std::cout << ver->name() << " : " << ver->distance() << " prepath ";
+          if (ver->prepath().lock()) {
+              std::cout << ver->prepath().lock()->name();
+          }
+          std::cout << '\n';
+      }
+      std::cout << std::endl;
   }
 
   void dijkstra(const T& s)
@@ -154,10 +199,18 @@ class Graph {
           }
       }
 
-      while (!q.empty()) {
-        std::cout << q.front()->name() << " : " << q.front()->distance() << std::endl;
-        q.pop();
-      }  
+      //while (!q.empty()) {
+      //  std::cout << q.front()->name() << " : " << q.front()->distance() << std::endl;
+      //  q.pop();
+      //}
+      for (const auto& ver : vertes_) {
+          std::cout << ver->name() << " : " << ver->distance() << " prepath ";
+          if (ver->prepath().lock()) {
+              std::cout << ver->prepath().lock()->name();
+          }
+          std::cout << '\n';
+      }
+      std::cout << std::endl;
   }
   void weightedNegative(const T& s)
   {
@@ -197,8 +250,29 @@ class Graph {
   }
   void eventNodeGraph()
   {
+      for (auto& vertex : vertes_) {
+          vertex->set_distance(0);
+          vertex->set_known(false);
+      }
       topological_sort();
-
+      struct LessHelper {
+          bool operator()(const std::shared_ptr<VertexType>& lhs, const std::shared_ptr<VertexType>& rhs) {
+              return lhs->toplogical_sort() < rhs->toplogical_sort();
+          }
+      };
+      BinaryHeap<std::shared_ptr<VertexType>, LessHelper> unknow_distance{ vertes_ };
+      while (!unknow_distance.isEmpty()) {
+          std::shared_ptr<VertexType> min;
+          unknow_distance.deleteMin(min);
+          for (auto& adj : min->adjance()) {
+              auto strong = adj.vertex_.lock();
+              auto dist = std::max(strong->distance(), min->distance() + adj.weight_);
+              strong->set_distance(dist);
+          }
+      }
+      for (auto vertex : vertes_) {
+          std::cout << vertex->name() << " " << vertex->distance() << " " << vertex->toplogical_sort() << std::endl;
+      }
   }
  private:
     std::shared_ptr<VertexType> find_vertex(const T& x)

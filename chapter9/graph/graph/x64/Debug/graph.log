@@ -1,0 +1,51 @@
+﻿  test1.cpp
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(194,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(191): message : while compiling class template member function 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateUp(int)'
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(104): message : see reference to function template instantiation 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateUp(int)' being compiled
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(176): message : see reference to class template instantiation 'BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>' being compiled
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\Graph.h(159): message : while compiling class template member function 'void Graph<int>::dijkstra(const T &)'
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(62): message : see reference to function template instantiation 'void Graph<int>::dijkstra(const T &)' being compiled
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\test1.cpp(5): message : see reference to class template instantiation 'Graph<int>' being compiled
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(156,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(155): message : while compiling class template member function 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::buildHeap(void)'
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(31): message : see reference to function template instantiation 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::buildHeap(void)' being compiled
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(150,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(130): message : while compiling class template member function 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateDown(int)'
+          with
+          [
+              T=int
+          ]
+E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\graph\HeapBinary.h(79): message : see reference to function template instantiation 'void BinaryHeap<std::shared_ptr<Vertex<T>>,Graph<T>::dijkstra::LessHelper,std::equal_to<std::shared_ptr<Vertex<T>>>>::percolateDown(int)' being compiled
+          with
+          [
+              T=int
+          ]
+  graph.vcxproj -> E:\GIT\data-structure-and-algorithm-analysis\chapter9\graph\x64\Debug\graph.exe
